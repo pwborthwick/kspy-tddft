@@ -36,6 +36,10 @@ class dii_subspace(object):
 
         #construct B matrix
         nSubSpace = len(self.fock_vector)
+        
+        #start diis after cache full
+        if nSubSpace < self.size: return f
+
         b = -np.ones((nSubSpace+1,nSubSpace+1))
         b[:-1,:-1] = 0.0 ; b[-1,-1] = 0.0
         for i in range(nSubSpace):
